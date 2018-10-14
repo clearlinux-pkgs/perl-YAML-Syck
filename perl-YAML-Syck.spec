@@ -4,24 +4,34 @@
 #
 Name     : perl-YAML-Syck
 Version  : 1.30
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TODDR/YAML-Syck-1.30.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TODDR/YAML-Syck-1.30.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/liby/libyaml-syck-perl/libyaml-syck-perl_1.30-1.debian.tar.xz
 Summary  : 'Fast, lightweight YAML loader and dumper'
 Group    : Development/Tools
-License  : MIT
-Requires: perl-YAML-Syck-lib
-Requires: perl-YAML-Syck-license
-Requires: perl-YAML-Syck-man
+License  : GPL-2.0 MIT
+Requires: perl-YAML-Syck-lib = %{version}-%{release}
+Requires: perl-YAML-Syck-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 No detailed description available
 
+%package dev
+Summary: dev components for the perl-YAML-Syck package.
+Group: Development
+Requires: perl-YAML-Syck-lib = %{version}-%{release}
+Provides: perl-YAML-Syck-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-YAML-Syck package.
+
+
 %package lib
 Summary: lib components for the perl-YAML-Syck package.
 Group: Libraries
-Requires: perl-YAML-Syck-license
+Requires: perl-YAML-Syck-license = %{version}-%{release}
 
 %description lib
 lib components for the perl-YAML-Syck package.
@@ -35,19 +45,11 @@ Group: Default
 license components for the perl-YAML-Syck package.
 
 
-%package man
-Summary: man components for the perl-YAML-Syck package.
-Group: Default
-
-%description man
-man components for the perl-YAML-Syck package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n YAML-Syck-1.30
-mkdir -p %{_topdir}/BUILD/YAML-Syck-1.30/deblicense/
+cd ..
+%setup -q -T -D -n YAML-Syck-1.30 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/YAML-Syck-1.30/deblicense/
 
 %build
@@ -72,12 +74,13 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-YAML-Syck
-cp COPYING %{buildroot}/usr/share/doc/perl-YAML-Syck/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-YAML-Syck
+cp COPYING %{buildroot}/usr/share/package-licenses/perl-YAML-Syck/COPYING
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-YAML-Syck/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -86,20 +89,21 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/JSON/Syck.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/YAML/Dumper/Syck.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/YAML/Loader/Syck.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/YAML/Syck.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/JSON/Syck.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/YAML/Dumper/Syck.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/YAML/Loader/Syck.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/YAML/Syck.pm
 
-%files lib
-%defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/YAML/Syck/Syck.so
-
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-YAML-Syck/COPYING
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/JSON::Syck.3
 /usr/share/man/man3/YAML::Syck.3
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/YAML/Syck/Syck.so
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-YAML-Syck/COPYING
+/usr/share/package-licenses/perl-YAML-Syck/deblicense_copyright

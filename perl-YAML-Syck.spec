@@ -4,7 +4,7 @@
 #
 Name     : perl-YAML-Syck
 Version  : 1.31
-Release  : 3
+Release  : 4
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TODDR/YAML-Syck-1.31.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TODDR/YAML-Syck-1.31.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/liby/libyaml-syck-perl/libyaml-syck-perl_1.30-1.debian.tar.xz
@@ -89,10 +89,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/JSON/Syck.pm
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/YAML/Dumper/Syck.pm
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/YAML/Loader/Syck.pm
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/YAML/Syck.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/JSON/Syck.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/YAML/Dumper/Syck.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/YAML/Loader/Syck.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/YAML/Syck.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -101,7 +101,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/YAML/Syck/Syck.so
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/auto/YAML/Syck/Syck.so
 
 %files license
 %defattr(0644,root,root,0755)

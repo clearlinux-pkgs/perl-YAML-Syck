@@ -4,7 +4,7 @@
 #
 Name     : perl-YAML-Syck
 Version  : 1.32
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TODDR/YAML-Syck-1.32.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TODDR/YAML-Syck-1.32.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/liby/libyaml-syck-perl/libyaml-syck-perl_1.30-1.debian.tar.xz
@@ -77,7 +77,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-YAML-Syck
 cp %{_builddir}/YAML-Syck-1.32/COPYING %{buildroot}/usr/share/package-licenses/perl-YAML-Syck/3710975c0e6727079e17c6d1f27948c40729d710
-cp %{_builddir}/YAML-Syck-1.32/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-YAML-Syck/369b581499a69287a2fc4cc6ebac64ac5a8eaafa
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-YAML-Syck/369b581499a69287a2fc4cc6ebac64ac5a8eaafa
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -103,8 +103,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/JSON/Syck.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/YAML/Dumper/Syck.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/YAML/Loader/Syck.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/YAML/Syck.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/YAML/Syck/Syck.so
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/JSON/Syck.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/YAML/Dumper/Syck.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/YAML/Loader/Syck.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/YAML/Syck.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/YAML/Syck/Syck.so

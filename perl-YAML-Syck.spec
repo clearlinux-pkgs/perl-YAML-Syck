@@ -4,7 +4,7 @@
 #
 Name     : perl-YAML-Syck
 Version  : 1.34
-Release  : 21
+Release  : 22
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TODDR/YAML-Syck-1.34.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TODDR/YAML-Syck-1.34.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/liby/libyaml-syck-perl/libyaml-syck-perl_1.30-1.debian.tar.xz
